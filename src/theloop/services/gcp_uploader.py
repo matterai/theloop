@@ -7,6 +7,8 @@ from google.cloud.storage import Client
 
 class GcpUploader:
     def __init__(self, client: Client, chunk_size: int = 1024 * 1024) -> None:
+        if chunk_size <= 0:
+            raise ValueError("chunk_size must be greater than 0")
         self.client = client
         self.chunk_size = chunk_size
 
